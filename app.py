@@ -611,7 +611,7 @@ def extract_results_from_image(image_bytes: bytes, api_key: str) -> dict:
         return {}
     try:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.0-flash")
         pil_image = Image.open(io.BytesIO(image_bytes))
         response  = model.generate_content([EXTRACTION_PROMPT, pil_image])
         raw = re.sub(r"```json|```", "", response.text.strip()).strip()
